@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rabbi Send</title>
+<link rel="stylesheet" href="style.css">
+<link rel="manifest" href="manifest.json">
+</head>
+<body>
+
+<header>
+  <div class="header-left">
+    <h1>Rabbi Send</h1>
+  </div>
+  <div class="header-right">
+    <div class="rabbit-container">
+      <img src="rabbit.png" id="rabbit" alt="Rabbi Mascot">
+    </div>
+    <button id="themeToggle">Toggle Theme</button>
+  </div>
+</header>
+
+<main>
+  <div class="dashboard">
+
+    <nav class="tabs">
+      <button class="tab active" data-tab="recipients">Recipients</button>
+      <button class="tab" data-tab="compose">Compose</button>
+      <button class="tab" data-tab="settings">Settings</button>
+      <button class="tab" data-tab="analytics">Analytics</button>
+    </nav>
+
+    <section class="tab-content active" id="recipients">
+      <div class="cards">
+        <div class="card">Total: <span id="total">0</span></div>
+        <div class="card valid">Valid: <span id="valid">0</span></div>
+        <div class="card invalid">Invalid: <span id="invalid">0</span></div>
+        <div class="card duplicates">Duplicates: <span id="duplicates">0</span></div>
+      </div>
+      <input type="file" id="fileInput" accept=".txt,.csv">
+      <textarea id="emails" placeholder="Paste emails here"></textarea>
+      <div class="recipient-table">
+        <table>
+          <thead>
+            <tr><th>Email</th><th>Status</th><th>Sent</th></tr>
+          </thead>
+          <tbody id="recipientBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="tab-content" id="compose">
+      <h2>Compose Message</h2>
+      <input id="subject" placeholder="Subject">
+      <textarea id="message" placeholder="Hello {email}"></textarea>
+      <div class="template-controls">
+        <button onclick="saveTemplate()">💾 Save Template</button>
+        <select id="templateList"></select>
+        <button onclick="loadTemplate()">📂 Load Template</button>
+      </div>
+    </section>
+
+    <section class="tab-content" id="settings">
+      <h2>Campaign Settings</h2>
+      <label>Sender Email (Gmail alias)</label>
+      <input id="senderEmail" placeholder="example@gmail.com">
+      <label>Batch Size</label>
+      <input id="batchSize" type="number" value="3" min="1" max="10">
+      <label>Delay Between Batches (seconds)</label>
+      <input id="delay" type="number" value="5" min="1">
+      <div class="action-buttons">
+        <button onclick="startCampaign()">🚀 Start</button>
+        <button onclick="pauseCampaign()">⏸ Pause</button>
+        <button onclick="resumeCampaign()">▶ Resume</button>
+      </div>
+    </section>
+
+    <section class="tab-content" id="analytics">
+      <h2>Analytics</h2>
+      <div class="cards">
+        <div class="card">Sent: <span id="sent">0</span></div>
+        <div class="card">Remaining: <span id="remaining">0</span></div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress" id="progress"></div>
+        <img src="rabbit.png" id="rabbitProgress" alt="Rabbit Mascot">
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>Rabbi • rabbi111@duck.com</footer>
+
+<!-- Confetti Library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+<script src="script.js"></script>
+</body>
+</html>
